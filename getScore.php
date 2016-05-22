@@ -2,20 +2,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-
+<link rel="stylesheet" type="text/css" href="./css/style.css" />
+<script src="./js/splitscore.js"></script>
 <title>SYNU QueryScore</title>
 </head>
-<body>
-
-
-
-
+<body onload="splitscore()">
+<h1 id="stitle">暂时无结果，请稍后再试</h1>
+</br></br>
 
 <?php
-$stuyear=substr($_POST["stuyear"],2,2).$_POST["stumonth"];
+$stuyear=$_POST["stuyear"].$_POST["stumonth"];
 $id=$_POST["id"];
-
 
 
 header("content-type:text/html;charset=utf-8");
@@ -31,8 +28,9 @@ $p = $client->__soapCall('xscjcx',array('parameters' => $param));
 
 $str= $p->xscjcxResult;
 
-//$str="您的2015-2016学年1学期的考试成绩为 大学外语专1: 73分,数据结构: 84分,职业发展与就业指导上: 合格,大学生安全教育: 合格,大学生心理健康教育: 合格,WINDOWS程序设计: 85分,大学生军事理论教程: 合格,面向对象的程序设计C++: 85分,计算机系统结构: 优秀,科技文献检索与写作: 优秀,算法分析与设计: 优秀,WEB程序设计: 94分.";
+echo "<div class=hidden id=\"result\">". $str ."</div>";
 
+/*
 //获取标题
 $title_at=strpos($str," ");
 $score_title = substr($str,0,$title_at);
@@ -57,8 +55,11 @@ for ($i=0;$i<$secore_count;$i++){
 	echo $row[$i];
 	echo "</li>";
 }
-
+echo"</ul>";
+*/
 ?>
+<div id="score" class=outarea>
+<ul id="uresult">
 </ul>
 </div>
 
